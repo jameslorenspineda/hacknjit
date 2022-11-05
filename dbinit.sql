@@ -1,0 +1,17 @@
+SET sql_safe_updates = FALSE;
+
+USE defaultdb;
+DROP DATABASE IF EXISTS serviewdb CASCADE;
+CREATE DATABASE IF NOT EXISTS serviewdb;
+
+USE serviewdb;
+
+CREATE TABLE users (
+    id uuid NOT NULL DEFAULT gen_random_uuid(),
+    email VARCHAR(100) NOT NULL,
+    password VARCHAR(100) NOT NULL,
+    created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    modified TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    PRIMARY KEY (id),
+    UNIQUE (email)
+);
